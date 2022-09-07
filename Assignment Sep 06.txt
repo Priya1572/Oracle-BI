@@ -1,0 +1,27 @@
+Sep 06 2022 
+
+Questions :
+
+1) WAQ to display all the employees located in New Jersey.
+
+2) WAQ to display number employees joined month wise.
+
+3) WAQ to display highest salary person information.
+
+4) WAQ to display highest salary person information department wise.
+
+Answers : 
+
+1. select a.first_name as name,b.state_province as location from employees a,emp_details_view b
+where a.employee_id=b.employee_id and b.state_province like 'Texas';
+
+2. select count(*) as count,to_char(hire_date,'MON') as months from employees
+group by to_char(hire_date,'MON'); 
+
+3. select * from employees
+where salary in
+(select max(salary) from employees);
+
+4. select employee_id,first_name,department_id,salary from employees
+where (department_id,salary) in
+(select department_id,max(salary) from employees group by department_id);

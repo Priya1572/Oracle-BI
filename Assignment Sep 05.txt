@@ -1,0 +1,38 @@
+Sep 05 2022
+
+Questions :
+
+1. WAQ to display number of people joined in December 2002
+
+2.WAQ to display employee information with maximum salary
+
+3. WAQ to display second highest salary
+
+4.WAQ to display second highest salary department wise
+
+Answers :
+
+1. select first_name,to_char(hire_date,'MON-YY') from employees
+ where to_char(hire_date,'MON-YY') like 'DEC-02';
+
+2. select * from employees where salary in (select max(salary) from employees);
+
+3. select max(salary) from employees where salary < (select max(salary) from employees);
+
+4. select department_id, max(salary) from employees a where 
+a.salary < (select max(salary) from employees b where a.department_id=b.department_id)
+group by department_id;
+
+Questions :
+
+1) WAQ to display emplyees name with the City they working into.
+
+2) WAO to display employee who joined in the same month as Charles?
+
+Answers : 
+
+1. select a.first_name as name,b.city as city from employees a,emp_details_view  b
+where a.employee_id=b.employee_id;
+
+2. select first_name,to_char(hire_date,'MON') from employees where to_char(hire_date,'MON')
+like (select to_char(hire_date,'MON') from employees where first_name = 'Charles');

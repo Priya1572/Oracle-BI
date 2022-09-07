@@ -1,0 +1,26 @@
+Sep 02 2022
+
+Questions :
+
+1) WAQ to display employees name ending with letter 'n'?
+
+2) WAQ to display employees record who joined in December month?
+
+3) WAQ to display emplyoees record who doesn't have any manager?
+
+4) WAQ to display employees record with bonus, bonus will be salary+commission?
+
+5) WAQ to display whose salary is between 5000 and 10000?
+
+Answers :
+
+1. select employee_id,first_name from employees where first_name like '%n';
+
+2. select employee_id,first_name,hire_date from employees where hire_date like '%DEC%';   
+
+3. select employee_id,first_name from employees where manager_id is null;  
+
+4. select employee_id,first_name,salary,(salary+commission_pct) bonus from employees where commission_pct is not null;
+                                                                          
+5. select employee_id,first_name,salary from employees where salary between 5000 and 10000;    
+                                         
