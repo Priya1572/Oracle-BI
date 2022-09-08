@@ -1,0 +1,39 @@
+Sep 7 2022
+
+Questions :
+
+1. WAQ to display number of employees joined year wise.
+
+2. WAQ to top 2 earning employee name and salary in each department. 
+
+3. How many rows will be displayed in each case for below joins
+
+Table-A				          Table-B
+    1							1
+    1							1
+    0							1
+    1
+
+1) cross join-?
+2) natural join-?
+3) inner join-?
+4) Right outer join-?
+5) Left outer join-?
+
+Answers :
+
+1. select to_char(hire_date,'YY') as year,count(*) as count from employees
+ group by to_char(hire_date,'YY') order by 1;
+
+2. select distinct * from employees e where 2>= (select count(distinct d.salary) from employees d 
+where e.department_id=d.department_id and d.salary >= e.salary);
+
+3. select * from TableA a cross join TableB b where a.dept_id=b.dept_id;
+
+    select * from TableA natural join TableB;
+
+    select a.emp_name,b.dept_name from TableA a inner join TableB b on a.dept_id=b.dept_id;
+
+    select a.emp_name,b.dept_name from TableA a left join TableB b on a.dept_id=b.dept_id;
+
+    select a.emp_name,b.dept_name from TableA a right join TableB b on a.dept_id=b.dept_id;
