@@ -1,0 +1,70 @@
+Sep 12 2022
+
+1. Create student grade calculator as function and procedure both.
+
+FUNCTION:
+
+create or replace function grades(mark IN number)
+return varchar2
+is
+result varchar2(20);
+BEGIN
+if(mark>=90 and mark<=100) then
+result := 'GRADE A';
+elsif (mark>=80 and mark<90) then
+result := 'GRADE B';
+elsif (mark>=70 and mark<80) then
+result := 'GRADE C';
+elsif (mark>=60 and mark<70) then
+result := 'GRADE D';
+else
+result := 'Fail';
+end if;
+return result;
+End;
+
+begin
+dbms_output.put_line(grades(77));
+end;
+
+PROCEDURE:
+
+create or replace procedure grades(mark1 IN number)
+is
+result varchar2(20);
+BEGIN
+if(mark>=90 and mark<=100) then
+result := 'GRADE A';
+elsif (mark>=80 and mark<90) then
+result := 'GRADE B';
+elsif (mark>=70 and mark<80) then
+result := 'GRADE C';
+elsif (mark>=60 and mark<70) then
+result := 'GRADE B';
+else
+result := 'Fail';
+end if;
+dbms_output.put_line(result);
+End;
+
+begin 
+grades(85);
+end;
+
+--------------------------------------------------------------------------------------------------------------------
+
+2.Create procedure for fetching maximum salary employee in department 100.
+
+create or replace procedure Max_Salary(Dept_id IN integer)
+is
+    esalary employees.salary%TYPE;
+begin
+    select max(salary) into esalary from employees where department_id=Dept_id;
+    dbms_output.put_line(esalary);
+end;
+
+begin
+Max_Salary(100);
+end;
+
+--select salary from employees where department_id like 100; // For Cross Checking

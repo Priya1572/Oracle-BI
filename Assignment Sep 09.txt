@@ -1,0 +1,32 @@
+Sep 09 2022
+
+1. Calculation 
+
+DECLARE
+num1 number(10);
+num2 number(10)
+message number(10);
+BEGIN
+num1:=10;
+num2:=20;
+message := num1 + num2 
+dbms_output.put_line('total' || message);
+END;
+
+
+2. Students Grade 
+
+
+DECLARE
+a number(5):= 85;
+BEGIN
+IF(a>90 and a<100 ) THEN
+dbms_output.put_line('Grade is A');
+elsif (a>80 and a<=90 ) THEN
+dbms_output.put_line('Grade is B');
+elsif (a>70 and a<=80 ) THEN
+dbms_output.put_line('Grade is C');
+else
+dbms_output.put_line('FAIL');
+END IF;
+END;
