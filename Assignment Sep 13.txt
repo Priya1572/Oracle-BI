@@ -1,0 +1,46 @@
+Sep 13 2022
+
+1. Write a procedure for calculating bonus of employee no 205.
+
+create or replace procedure get_bonus(emp_id IN number)
+is
+esalary number;
+begin
+       select salary+ nvl(commission_pct,0) bonus INTO esalary from employees where employee_id = emp_id;
+       dbms_output.put_line('BONUS : ' ||esalary);
+end;
+
+begin
+get_bonus(205);
+end;
+
+--select salary,commission_pct from employees where employee_id like 205;// For Cross Checking
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Write a procedure for giving bonus to employees based on below rules - if job_id is IT PROG 
+then salary will be increase by 1000 and if job_id is SA_REP then salary will be increase by 700.
+
+create or replace procedure emp_bonus(emp_id IN integer)
+is
+ebonus number;
+jid varchar(10);
+begin
+    select job_id into jid from employees where employee_id=emp_id;
+    if jid like 'IT_PROG' then
+        select salary+1000 INTO ebonus from employees where employee_id = emp_id;       
+    elsif jid like 'SA_REP' THEN
+        select salary+700 INTO ebonus from employees where employee_id = emp_id;
+    else
+        select salary INTO ebonus from employees where employee_id = emp_id;
+        dbms_output.put_line(NO BONUS);
+    end if;
+dbms_output.put_line(ebonus);
+end;
+
+begin
+emp_bonus(105);
+end;
+
+--select employee_id,job_id,salary from employees; // For Cross Check
+
