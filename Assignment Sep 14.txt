@@ -1,0 +1,35 @@
+Sep 14 2022
+
+1. Write a procedure for giving bonus to employees based on below rules - if job_id is IT PROG 
+then salary will be increase by 1000 and if job_id is SA_REP then salary will be increase by 700.
+
+declare 
+j_id employees.job_id%type :=&j_id;
+erecord employees%rowtype;
+cursor emp_cur is
+select * from employees where job_id=j_id;
+begin
+open emp_cur;
+ loop
+    fetch emp_cur into erecord;
+    EXIT when emp_cur%NOTFOUND;
+    if (erecord.job_id like 'IT_PROG') then
+     dbms_output.put_line('EMP LOYEE ID : '|| erecord.employee_id);
+     dbms_output.put_line('JOB ID : '|| erecord.job_id);
+     dbms_output.put_line('SALARY : '|| erecord.salary);
+     dbms_output.put_line('BONUS : '||(erecord.salary+1000));
+    elsif (erecord.job_id like 'SA_REP') then
+     dbms_output.put_line('EMP LOYEE ID : '|| erecord.employee_id);
+     dbms_output.put_line('JOB ID : '|| erecord.job_id);
+     dbms_output.put_line('SALARY : '|| erecord.salary);
+     dbms_output.put_line('BONUS : '||(erecord.salary+700));
+    else
+      dbms_output.put_line('NO BONUS');
+    end if;
+ end loop;
+close emp_cur;
+end;
+
+--select employee_id,job_id,salary from employees where job_id='IT_PROG'; // For Cross Check
+
+--select employee_id,job_id,salary from employees where job_id='SA_REP'; // For Cross Check
