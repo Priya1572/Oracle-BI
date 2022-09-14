@@ -14,12 +14,12 @@ open emp_cur;
     fetch emp_cur into erecord;
     EXIT when emp_cur%NOTFOUND;
     if (erecord.job_id like 'IT_PROG') then
-     dbms_output.put_line('EMP LOYEE ID : '|| erecord.employee_id);
+     dbms_output.put_line('EMPLOYEE ID : '|| erecord.employee_id);
      dbms_output.put_line('JOB ID : '|| erecord.job_id);
      dbms_output.put_line('SALARY : '|| erecord.salary);
      dbms_output.put_line('BONUS : '||(erecord.salary+1000));
     elsif (erecord.job_id like 'SA_REP') then
-     dbms_output.put_line('EMP LOYEE ID : '|| erecord.employee_id);
+     dbms_output.put_line('EMPLOYEE ID : '|| erecord.employee_id);
      dbms_output.put_line('JOB ID : '|| erecord.job_id);
      dbms_output.put_line('SALARY : '|| erecord.salary);
      dbms_output.put_line('BONUS : '||(erecord.salary+700));
