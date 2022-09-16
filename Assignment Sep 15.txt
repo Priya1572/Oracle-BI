@@ -6,10 +6,6 @@ Write a procedure to fetch all records of JOB_ID manager with their subordinates
 
 Manager along with employees working under him.
 
-Please write below stored procedure
-
-Write a procedure to fetch all records of JOB_ID manager with their subordinates.
-
 
 Answer :
 
