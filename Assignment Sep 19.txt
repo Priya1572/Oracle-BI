@@ -1,0 +1,53 @@
+Sep 19 2022
+
+Questions :
+
+1. Write a trigger to ensure that no employee of age 
+less than 25 can be inserted in the database.
+
+2. Create a trigger which will work before deletion in employee table and
+ create a duplicate copy of the record in another table employee_backup.
+
+Answers :
+
+1. create table employ(emp_id number,emp_name varchar2(20),age number,salary number);
+
+insert into employ values(100,'geetha',30,20000);
+insert into employ values(101,'pooja',38,22000);
+insert into employ values(102,'abi',40,26000);
+
+select * from employ;
+
+create or replace trigger before_age
+before insert on employ
+for each row
+begin
+if (:new.age < 25) then 
+raise_application_error(-20000,'ERROR!! THE AGE MUST BE ATLEAST 25');
+end if;
+end;
+/
+
+--insert into employ values(103,'kavya',22,21000); // For Checking
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+2. create table employee_backup(employee_id number,first_name varchar2(20),
+    department_id number,job_id varchar2(20),salary number);
+
+create or replace trigger bef_del
+before delete 
+on emp 
+for each row
+begin
+insert into employee_backup values(:old.employee_id,:old.first_name,:old.department_id,:old.job_id,:old.salary);
+end;
+/
+
+--delete from emp where first_name='Valli'; // For Checking 
+
+--select * from employee_backup; // For Checking
+
+
+
+

@@ -1,0 +1,18 @@
+Sep 16 2022
+
+1. Create a trigger which stores information of the user and timestamp of 
+    operation updating salary in emp table, log this into separate table emp_log table
+
+
+create table emp_log(employee_id number,first_name varchar2(20),salary number,modify_date timestamp);
+
+create or replace trigger update_sal
+before update of salary on emp 
+for each row
+begin
+insert into emp_log values(:new.employee_id,:new.first_name,:new.salary,systimestamp);
+end;
+
+--update emp set salary=32000 where employee_id=100; // For Checking
+
+--select * from emp_log; // For Checking
